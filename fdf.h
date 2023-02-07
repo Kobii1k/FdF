@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 14:11:34 by mgagne            #+#    #+#             */
-/*   Updated: 2023/01/26 17:36:19 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/02/07 11:21:37 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <math.h>
 # include "big_Libft/libft.h"
+# include "big_Libft/Printf/ft_printf.h"
 # include "mlx/mlx.h"
 
 typedef struct s_data

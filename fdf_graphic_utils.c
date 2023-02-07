@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:38:48 by mgagne            #+#    #+#             */
-/*   Updated: 2023/01/26 17:09:02 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/02/07 11:22:32 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	close_win(t_data *data)
 
 int	key_hook(int keycode, t_data *data)
 {
-	if (keycode == 53)
+	if (keycode == 65307)
 		close_win(data);
 	return (0);
 }
