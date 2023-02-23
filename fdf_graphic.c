@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:37:30 by mgagne            #+#    #+#             */
-/*   Updated: 2023/01/28 19:02:33 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/02/23 16:05:04 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	init_mlx(t_data *data)
 	data->width = 1920;
 	data->height = 1080;
 	data->mlx = mlx_init();
-	data->window = mlx_new_window(data->mlx, data->width, data->height, "oui");
+	data->window = mlx_new_window(data->mlx, data->width, data->height, "FdF");
 	data->img = mlx_new_image(data->mlx, data->width, data->height);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);

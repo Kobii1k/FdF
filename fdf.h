@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 14:11:34 by mgagne            #+#    #+#             */
-/*   Updated: 2023/02/07 11:21:37 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/02/23 16:17:50 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	init_mlx(t_data *data);
 //fdf_graphic_utils
 int		close_win(t_data *data);
 int		key_hook(int keycode, t_data *data);
-void	fit_zoom(t_data *data);
 void	fit_to_window(t_data *data);
 
 //fdf_error

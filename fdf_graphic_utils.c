@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:38:48 by mgagne            #+#    #+#             */
-/*   Updated: 2023/02/07 11:22:32 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/02/23 17:59:25 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,37 +22,26 @@ int	close_win(t_data *data)
 
 int	key_hook(int keycode, t_data *data)
 {
+	printf("%d");
+	if (keycode == 65362)
+	{
+		//haut
+	}
+	if (keycode == 65364)
+	{
+		//bas
+	}
+	if (keycode == 65361)
+	{
+		//gauche
+	}
+	if (keycode == 65363)
+	{
+		//droite
+	}
 	if (keycode == 65307)
 		close_win(data);
 	return (0);
-}
-
-void	fit_zoom(t_data *data)
-{
-	int	highest;
-
-	if (data->tab_len > data->line_len)
-		highest = data->tab_len;
-	else
-		highest = data->line_len;
-	if (highest > 350)
-		data->zoom = 1;
-	if (highest > 300)
-		data->zoom = 3;
-	if (highest > 200)
-		data->zoom = 5;
-	if (highest <= 200)
-		data->zoom = 7;
-	if (highest <= 100)
-		data->zoom = 9;
-	if (highest <= 50)
-		data->zoom = 18;
-	if (highest <= 25)
-		data->zoom = 25;
-	if (highest <= 20)
-		data->zoom = 30;
-	if (highest <= 10)
-		data->zoom = 40;
 }
 
 void	fit_to_window(t_data *data)
@@ -62,7 +51,7 @@ void	fit_to_window(t_data *data)
 	int	x_center;
 	int	y_center;
 
-	fit_zoom(data);
+	data->zoom = ((data->width + data->height) / 2) / (data->line_len + data->tab_len);
 	x = data->line_len / 2;
 	y = data->tab_len / 2;
 	x_center = (data->zoom * (x - y)) / sqrt(2);
