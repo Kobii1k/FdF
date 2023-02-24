@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 14:11:34 by mgagne            #+#    #+#             */
-/*   Updated: 2023/02/23 16:17:50 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/02/24 12:00:08 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,19 @@
 # include "big_Libft/Printf/ft_printf.h"
 # include "mlx/mlx.h"
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}			t_point;
+
 typedef struct s_data
 {
 	int		**tab;
 	int		tab_len;
 	int		line_len;
+
+	t_point **tab_iso;
 
 	int		width;
 	int		height;
@@ -34,6 +42,8 @@ typedef struct s_data
 	void	*window;
 	int		x_offset;
 	int		y_offset;
+	int		x_translate;
+	int		y_translate;
 	int		zoom;
 
 	void	*img;
@@ -42,12 +52,6 @@ typedef struct s_data
 	int		line_length;
 	int		endian;
 }			t_data;
-
-typedef struct s_point
-{
-	int	x;
-	int	y;
-}			t_point;
 
 enum {
 	ON_KEYDOWN = 2,
@@ -79,7 +83,7 @@ void	init_tab(int fd, t_data *data);
 //fdf_graphic
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	print_line(t_data *data, t_point p2, t_point p1);
-void	print_lines(t_data *data, t_point **tab);
+void	print_lines(t_data *data);
 t_point	**project_iso(t_data	*data);
 void	init_mlx(t_data *data);
 
@@ -87,6 +91,7 @@ void	init_mlx(t_data *data);
 int		close_win(t_data *data);
 int		key_hook(int keycode, t_data *data);
 void	fit_to_window(t_data *data);
+void	ft_update(t_data *data);
 
 //fdf_error
 void	parse_error(void);

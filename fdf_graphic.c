@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:37:30 by mgagne            #+#    #+#             */
-/*   Updated: 2023/02/23 16:05:04 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/02/24 11:50:48 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	print_line(t_data *data, t_point p2, t_point p1)
 	}
 }
 
-void	print_lines(t_data *data, t_point **tab_iso)
+void	print_lines(t_data *data)
 {
 	int	x;
 	int	y;
@@ -59,9 +59,9 @@ void	print_lines(t_data *data, t_point **tab_iso)
 		while (x < data->line_len)
 		{
 			if ((x + 1) < data->line_len)
-				print_line(data, tab_iso[y][x + 1], tab_iso[y][x]);
+				print_line(data, data->tab_iso[y][x + 1], data->tab_iso[y][x]);
 			if ((y + 1) < data->tab_len)
-				print_line(data, tab_iso[y + 1][x], tab_iso[y][x]);
+				print_line(data, data->tab_iso[y + 1][x], data->tab_iso[y][x]);
 			x++;
 		}
 		y++;
@@ -97,22 +97,24 @@ t_point	**project_iso(t_data *data)
 	return (tab_iso);
 }
 
-void	init_mlx(t_data *data)
+void	ft_update(t_data *data)
 {
-	t_point	**tab_iso;
-
-	data->width = 1920;
-	data->height = 1080;
-	data->mlx = mlx_init();
-	data->window = mlx_new_window(data->mlx, data->width, data->height, "FdF");
 	data->img = mlx_new_image(data->mlx, data->width, data->height);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
 	fit_to_window(data);
-	tab_iso = project_iso(data);
-	print_lines(data, tab_iso);
-	free_tab_iso(tab_iso, data->tab_len);
+	data->tab_iso = project_iso(data);
+	print_lines(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->img, 0, 0);
+}
+
+void	init_mlx(t_data *data)
+{
+	data->width = 1920;
+	data->height = 1080;
+	data->mlx = mlx_init();
+	data->window = mlx_new_window(data->mlx, data->width, data->height, "FdF");
+	ft_update(data);
 	mlx_key_hook(data->window, key_hook, data);
 	mlx_hook(data->window, ON_DESTROY, 0, close_win, data);
 	mlx_loop(data->mlx);
