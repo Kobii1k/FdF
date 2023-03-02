@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 13:16:03 by mgagne            #+#    #+#             */
-/*   Updated: 2023/01/26 17:18:35 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/03/02 11:33:20 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	init_struct(char *argv1, t_data *data)
 		read_error();
 	}
 	fill_tab(data, fd);
+	data->x_translate = 0;
+	data->y_translate = 0;
 	close(fd);
 }
 

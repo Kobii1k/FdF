@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:37:30 by mgagne            #+#    #+#             */
-/*   Updated: 2023/02/24 11:50:48 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/03/02 11:34:31 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_point	**project_iso(t_data *data)
 	return (tab_iso);
 }
 
-void	ft_update(t_data *data)
+void	ft_update_map(t_data *data)
 {
 	data->img = mlx_new_image(data->mlx, data->width, data->height);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
@@ -114,7 +114,7 @@ void	init_mlx(t_data *data)
 	data->height = 1080;
 	data->mlx = mlx_init();
 	data->window = mlx_new_window(data->mlx, data->width, data->height, "FdF");
-	ft_update(data);
+	ft_update_map(data);
 	mlx_key_hook(data->window, key_hook, data);
 	mlx_hook(data->window, ON_DESTROY, 0, close_win, data);
 	mlx_loop(data->mlx);
