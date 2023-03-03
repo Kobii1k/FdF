@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 14:11:34 by mgagne            #+#    #+#             */
-/*   Updated: 2023/03/02 13:38:35 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/03/03 15:11:34 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	init_mlx(t_data *data);
 int		close_win(t_data *data);
 int		key_hook(int keycode, t_data *data);
 void	fit_to_window(t_data *data);
-void	ft_update_map(t_data *data);
+void	update_map(t_data *data);
 
 //fdf_error
 void	parse_error(void);
