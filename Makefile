@@ -14,7 +14,7 @@ BIGLIBFT		= ./big_Libft/
 				${CC} ${CFLAGS} -O3 -c $< -o ${<:.c=.o}  -I./
 
 ${NAME}:		${OBJS} biglibft
-				${CC} ${OBJS} big_Libft/libft.a big_Libft/libftprintf.a mlx/libmlx.a -lX11 -lXext -L./mlx/ -lm -o ${NAME}
+				${CC} ${OBJS} big_Libft/libft.a big_Libft/printfd.a mlx/libmlx.a -lX11 -lXext -L./mlx/ -lm -o ${NAME}
 
 all:			${NAME}
 

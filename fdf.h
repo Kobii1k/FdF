@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 14:11:34 by mgagne            #+#    #+#             */
-/*   Updated: 2023/03/03 15:11:34 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/03/04 12:32:44 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <stdio.h>
 # include <math.h>
 # include "big_Libft/libft.h"
-# include "big_Libft/Printf/ft_printf.h"
 # include "mlx/mlx.h"
 
 typedef struct s_point
@@ -34,7 +33,7 @@ typedef struct s_data
 	int		tab_len;
 	int		line_len;
 
-	t_point **tab_iso;
+	t_point	**tab_iso;
 
 	int		width;
 	int		height;
