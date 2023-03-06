@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:09:03 by mgagne            #+#    #+#             */
-/*   Updated: 2023/03/06 13:34:00 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/03/06 17:37:43 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	check_valid_file(int fd, t_data *data)
 	n_line = 1;
 	while (str)
 	{
+		free(str);
 		str = get_next_line(fd);
 		if (!str)
 			break ;
@@ -57,6 +58,7 @@ void	check_valid_file(int fd, t_data *data)
 			parse_error();
 		n_line++;
 	}
+	free(str);
 	data->tab_len = n_line;
 	data->line_len = len;
 }
@@ -83,9 +85,10 @@ void	fill_line(t_data *data, char *str, int tab_len, int fd)
 				i++;
 			sub = ft_substr(str, tmp, (i - tmp));
 			if (!sub)
-				malloc_error_free(data, fd);
-			data->tab[tab_len][u] = ft_atoi(sub) * 4;
+				malloc_error_free(data, fd, str);
+			data->tab[tab_len][u] = ft_atoi(sub);
 			u++;
+			free(sub);
 		}
 	}
 }
@@ -106,12 +109,14 @@ void	fill_tab(t_data *data, int fd)
 	tab_len = 1;
 	while (str)
 	{
+		free(str);
 		str = get_next_line(fd);
 		if (!str)
 			break ;
 		fill_line(data, str, tab_len, fd);
 		tab_len++;
 	}
+	free(str);
 }
 
 void	init_tab(int fd, t_data *data)

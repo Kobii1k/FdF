@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 14:11:34 by mgagne            #+#    #+#             */
-/*   Updated: 2023/03/04 12:32:44 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/03/06 18:51:15 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@ typedef struct s_data
 	void	*window;
 	int		x_offset;
 	int		y_offset;
-	int		x_translate;
-	int		y_translate;
 	double	zoom;
+	double	altitude;
 
 	void	*img;
 	char	*addr;
@@ -64,12 +63,13 @@ enum {
 
 //fdf
 void	init_struct(char *argv1, t_data *data);
+void	init_mlx(t_data *data);
 
 //fdf_utils
 int		check_format(char *str);
 void	free_tab(t_data *data, int index);
 void	free_tab_iso(t_point **tab_iso, int index);
-void	malloc_error_free(t_data *data, int fd);
+void	malloc_error_free(t_data *data, int fd, char *str);
 void	free_2_tabs(t_data *data, t_point **tab_iso, int y);
 
 //fdf_parse
@@ -83,14 +83,14 @@ void	init_tab(int fd, t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	print_line(t_data *data, t_point p2, t_point p1);
 void	print_lines(t_data *data);
-t_point	**project_iso(t_data	*data);
-void	init_mlx(t_data *data);
+void	project_iso(t_data	*data);
+t_point	**init_tab_iso(t_data *data);
 
 //fdf_graphic_utils
 int		close_win(t_data *data);
 int		key_hook(int keycode, t_data *data);
 void	fit_to_window(t_data *data);
-void	update_map(t_data *data);
+int		update_map(t_data *data);
 
 //fdf_error
 void	parse_error(void);

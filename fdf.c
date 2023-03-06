@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 13:16:03 by mgagne            #+#    #+#             */
-/*   Updated: 2023/03/02 11:33:20 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/03/06 18:57:22 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,25 @@ void	init_struct(char *argv1, t_data *data)
 		read_error();
 	}
 	fill_tab(data, fd);
-	data->x_translate = 0;
-	data->y_translate = 0;
 	close(fd);
+}
+
+void	init_mlx(t_data *data)
+{
+	data->width = 1920;
+	data->height = 1080;
+	data->mlx = mlx_init();
+	if (!(data->mlx))
+		free(data);
+	data->window = mlx_new_window(data->mlx, data->width, data->height, "FdF");
+	if (!(data->window))
+		free(data);
+	fit_to_window(data);
+	data->tab_iso = init_tab_iso(data);
+	update_map(data);
+	mlx_hook(data->window, 2, 1L << 0, key_hook, data);
+	mlx_hook(data->window, ON_DESTROY, 0, close_win, data);
+	mlx_loop(data->mlx);
 }
 
 int	main(int ac, char **av)
