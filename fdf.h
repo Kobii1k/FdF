@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 14:11:34 by mgagne            #+#    #+#             */
-/*   Updated: 2023/03/06 18:51:15 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/03/07 10:44:15 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,13 @@ void	print_line(t_data *data, t_point p2, t_point p1);
 void	print_lines(t_data *data);
 void	project_iso(t_data	*data);
 t_point	**init_tab_iso(t_data *data);
+int		update_map(t_data *data);
 
 //fdf_graphic_utils
 int		close_win(t_data *data);
 int		key_hook(int keycode, t_data *data);
 void	fit_to_window(t_data *data);
-int		update_map(t_data *data);
+void	free_mlx_tabs(t_data *data, int y);
 
 //fdf_error
 void	parse_error(void);

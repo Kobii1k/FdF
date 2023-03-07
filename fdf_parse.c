@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:09:03 by mgagne            #+#    #+#             */
-/*   Updated: 2023/03/06 17:37:43 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/03/07 10:48:15 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,7 @@ void	fill_line(t_data *data, char *str, int tab_len, int fd)
 			sub = ft_substr(str, tmp, (i - tmp));
 			if (!sub)
 				malloc_error_free(data, fd, str);
-			data->tab[tab_len][u] = ft_atoi(sub);
-			u++;
+			data->tab[tab_len][u++] = ft_atoi(sub);
 			free(sub);
 		}
 	}

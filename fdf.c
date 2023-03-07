@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 13:16:03 by mgagne            #+#    #+#             */
-/*   Updated: 2023/03/06 18:57:22 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/03/07 10:20:48 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,14 @@ void	init_mlx(t_data *data)
 	data->height = 1080;
 	data->mlx = mlx_init();
 	if (!(data->mlx))
-		free(data);
+		free_tab(data, data->tab_len);
 	data->window = mlx_new_window(data->mlx, data->width, data->height, "FdF");
 	if (!(data->window))
-		free(data);
+	{
+		free_tab(data, data->tab_len);
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
 	fit_to_window(data);
 	data->tab_iso = init_tab_iso(data);
 	update_map(data);

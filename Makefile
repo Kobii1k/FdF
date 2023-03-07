@@ -11,7 +11,7 @@ CFLAGS 			= -Wall -Werror -Wextra
 BIGLIBFT		= ./big_Libft/
 
 %.o:			%.c Makefile fdf.h
-				${CC} ${CFLAGS} -O3 -c $< -g3 -o ${<:.c=.o}  -I./
+				${CC} ${CFLAGS} -O3 -c $< -o ${<:.c=.o}  -I./
 
 ${NAME}:		${OBJS} biglibft
 				${CC} ${OBJS} big_Libft/libft.a big_Libft/printfd.a mlx/libmlx.a -lX11 -lXext -L./mlx/ -lm -g -o ${NAME}

@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:37:30 by mgagne            #+#    #+#             */
-/*   Updated: 2023/03/06 18:51:22 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/03/07 10:47:50 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
-
-int	update_map(t_data *data)
-{
-	data->img = mlx_new_image(data->mlx, data->width, data->height);
-	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
-			&data->line_length, &data->endian);
-	project_iso(data);
-	print_lines(data);
-	mlx_put_image_to_window(data->mlx, data->window, data->img, 0, 0);
-	return (0);
 }
 
 void	print_line(t_data *data, t_point p2, t_point p1)
@@ -79,7 +68,7 @@ void	print_lines(t_data *data)
 	}
 }
 
-t_point **init_tab_iso(t_data *data)
+t_point	**init_tab_iso(t_data *data)
 {
 	t_point	**tab_iso;
 	int		y;
@@ -88,6 +77,9 @@ t_point **init_tab_iso(t_data *data)
 	if (!tab_iso)
 	{
 		free_tab(data, data->tab_len);
+		mlx_destroy_window(data->mlx, data->window);
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
 		malloc_error();
 	}
 	y = -1;
@@ -95,7 +87,7 @@ t_point **init_tab_iso(t_data *data)
 	{
 		tab_iso[y] = malloc(sizeof(t_point) * data->line_len);
 		if (!tab_iso[y])
-			free_2_tabs(data, tab_iso, y);
+			free_mlx_tabs(data, y);
 	}
 	return (tab_iso);
 }
@@ -113,7 +105,8 @@ void	project_iso(t_data *data)
 		{
 			data->tab_iso[y][x].x = data->x_offset + (data->zoom * (x - y)) \
 				/ sqrt(2);
-			data->tab_iso[y][x].y = data->y_offset - (data->tab[y][x] * (data->zoom / data->altitude)) + (data->zoom * (x + y)) / sqrt(6);
+			data->tab_iso[y][x].y = data->y_offset - (data->tab[y][x] * \
+			(data->zoom / data->altitude)) + (data->zoom * (x + y)) / sqrt(6);
 		}
 	}
 }

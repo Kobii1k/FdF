@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 14:20:24 by mgagne            #+#    #+#             */
-/*   Updated: 2023/03/06 14:12:13 by mgagne           ###   ########.fr       */
+/*   Updated: 2023/03/07 10:26:21 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,5 @@ void	malloc_error_free(t_data *data, int fd, char *str)
 	close(fd);
 	free_tab(data, data->tab_len);
 	free(str);
-	malloc_error();
-}
-
-void	free_2_tabs(t_data *data, t_point **tab_iso, int y)
-{
-	free_tab_iso(tab_iso, y);
-	free_tab(data, data->tab_len);
 	malloc_error();
 }
